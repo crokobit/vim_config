@@ -50,8 +50,6 @@ call dein#add( 'mileszs/ack.vim')
 
 "solarized, screen color template
 call dein#add( 'altercation/vim-colors-solarized')
-call dein#add( 'altercation/vim-colors-solarized')
-call dein#add( 'haya14busa/incsearch.vi')
 " call dein#add( 'chilicuil/vim-sml-coursera')
 
 call dein#add('pangloss/vim-javascript')
