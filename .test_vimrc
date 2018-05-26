@@ -1,0 +1,19 @@
+" TAG
+set path+=**
+set wildmenu
+"ls open opened buffer
+":b + uniq substring using for querying in opened buffer
+command! MakeTags !ctags -R .
+" expand("%")... get current path
+" ctrl + [ or ] jump to deffinition
+" g ctrl + [ shows
+" ctags only tag the class XXXX or def XXXX
+" ^t jump back to tag stack
+
+"AUTO COMPLETE :
+" ^n ^p (read from tags and require file above if it is .rb -- vim build in)
+" ^x^n same file only
+" ^x^f file names (found what you want then ^x^f again)
+" ^x^l lines
+" ^x^] tags only 
+" :help ins-completion

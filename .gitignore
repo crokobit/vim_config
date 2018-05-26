@@ -1,0 +1,4 @@
+/bundle
+.init.vim-rplugin~
+.netrwhist
+install.sh
