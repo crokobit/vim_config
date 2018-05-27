@@ -26,11 +26,11 @@ if dein#load_state('/Users/crokobit/Data/nvim')
   call dein#add( 'pangloss/vim-javascript')
   call dein#add( 'tpope/vim-rails')
   call dein#add( 'tpope/vim-commentary') " gc
-  " call dein#add( 'hwartig/vim-seeing-is-believing')
+  call dein#add( 'hwartig/vim-seeing-is-believing')
   call dein#add( 'easymotion/vim-easymotion')
-  call dein#add( 'haya14busa/incsearch.vim')
-  call dein#add( 'haya14busa/incsearch-fuzzy.vim')
-  call dein#add( 'haya14busa/incsearch-easymotion.vim')
+  " call dein#add( 'haya14busa/incsearch.vim')
+  " call dein#add( 'haya14busa/incsearch-fuzzy.vim')
+  " call dein#add( 'haya14busa/incsearch-easymotion.vim')
   call dein#add( 'luochen1990/rainbow')
 
 "Vim plugin that allows you to save files into directories that do not exist yet.
@@ -58,6 +58,12 @@ call dein#add('Yggdroot/indentLine')
 call dein#add('tpope/vim-surround')
 call dein#add('michaeljsmith/vim-indent-object')
 call dein#add('AndrewRadev/splitjoin.vim')
+call dein#add('t9md/vim-choosewin')
+" invoke with '-'
+nmap  -  <Plug>(choosewin)
+" if you want to use overlay feature
+let g:choosewin_overlay_enable = 1
+" call dein#add('jeffkreeftmeijer/vim-numbertoggle')
 
 
   " Required:
@@ -135,6 +141,20 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
+set number relativenumber
+
+  augroup seeingIsBelievingSettings
+    autocmd!
+
+    autocmd FileType ruby nmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
+
+    autocmd FileType ruby nmap <buffer> ga <Plug>(seeing-is-believing-mark)
+    autocmd FileType ruby xmap <buffer> gz <Plug>(seeing-is-believing-mark)
+    autocmd FileType ruby imap <buffer> ga <Plug>(seeing-is-believing-mark)
+
+    autocmd FileType ruby nmap <buffer> gA <Plug>(seeing-is-believing-run)
+  augroup END
+  
 " Rainbow Colors Improved Setup {{{
 " au FileType c,cpp,objc,objcpp,go,rust,javascript,java call rainbow#load()
 " au FileType clojure call rainbow#load(
