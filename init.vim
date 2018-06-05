@@ -1,73 +1,77 @@
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath+=/Users/crokobit/Data/nvim/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state('/Users/crokobit/Data/nvim')
-  call dein#begin('/Users/crokobit/Data/nvim')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('/Users/crokobit/Data/nvim/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add( 'tpope/vim-fugitive') " Git rapper
-  call dein#add( 'ctrlpvim/ctrlp.vim')
-  call dein#add( 'flazz/vim-colorschemes')
-  call dein#add( 'vim-ruby/vim-ruby')
-  call dein#add( 'scrooloose/nerdtree')
-  call dein#add( 'rking/ag.vim') " ack alternative
-  call dein#add( 'pangloss/vim-javascript')
-  call dein#add( 'tpope/vim-rails')
-  call dein#add( 'tpope/vim-commentary') " gc
-  call dein#add( 'hwartig/vim-seeing-is-believing')
-  call dein#add( 'easymotion/vim-easymotion')
-  " call dein#add( 'haya14busa/incsearch.vim')
-  " call dein#add( 'haya14busa/incsearch-fuzzy.vim')
-  " call dein#add( 'haya14busa/incsearch-easymotion.vim')
-  call dein#add( 'luochen1990/rainbow')
-
-"Vim plugin that allows you to save files into directories that do not exist yet.
-call dein#add( 'DataWraith/auto_mkdir')
-
-"screen.vim is a vim plugin which allows you to simulate a split shell in vim using either gnu screen or tmux, and to send selections to be evaluated by the program running in that shell
-" call dein#add( 'ervandew/screen')
-
+call plug#begin('~/.vim/plugged')
+  Plug 'Shougo/neosnippet.vim'
+  Plug 'Shougo/neosnippet-snippets'
+  Plug  'tpope/vim-fugitive' " Git rapper
+  Plug  'ctrlpvim/ctrlp.vim'
+  Plug  'flazz/vim-colorschemes'
+  Plug  'vim-ruby/vim-ruby'
+  Plug  'scrooloose/nerdtree'
+  Plug  'rking/ag.vim' " ack alternative
+  Plug  'pangloss/vim-javascript'
+  Plug  'tpope/vim-rails'
+  Plug  'tpope/vim-commentary' " gc
+  Plug  'hwartig/vim-seeing-is-believing'
+  Plug  'easymotion/vim-easymotion'
+  Plug  'haya14busa/incsearch.vim', { 'rev': 'v2.0.1' }
+  Plug  'haya14busa/incsearch-fuzzy.vim'
+  Plug  'haya14busa/incsearch-easymotion.vim'
+  Plug  'luochen1990/rainbow'
+  "Vim plugin that allows you to save files into directories that do not exist yet.
+  Plug  'DataWraith/auto_mkdir'
 " ctrl + N P X mutiple select
-call dein#add( 'terryma/vim-multiple-cursors')
+  Plug  'terryma/vim-multiple-cursors'
+  " use vim trace code
+  Plug  'fntlnz/atags.vim'
+  " Plug  'vim-scripts/taglist.vim'
+  Plug  'mileszs/ack.vim'
 
-" use vim trace code
-call dein#add( 'fntlnz/atags.vim')
-" call dein#add( 'vim-scripts/taglist.vim')
+  "solarized, screen color template
+  Plug  'altercation/vim-colors-solarized'
+  " Plug  'chilicuil/vim-sml-coursera'
 
-call dein#add( 'mileszs/ack.vim')
-
-"solarized, screen color template
-call dein#add( 'altercation/vim-colors-solarized')
-" call dein#add( 'chilicuil/vim-sml-coursera')
-
-call dein#add('pangloss/vim-javascript')
-call dein#add('maxmellon/vim-jsx-pretty')
-call dein#add('Yggdroot/indentLine')
-call dein#add('tpope/vim-surround')
-call dein#add('michaeljsmith/vim-indent-object')
-call dein#add('AndrewRadev/splitjoin.vim')
-call dein#add('t9md/vim-choosewin')
-" call dein#add('jeffkreeftmeijer/vim-numbertoggle')
+  Plug 'pangloss/vim-javascript'
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'Yggdroot/indentLine'
+  Plug 'tpope/vim-surround'
+  Plug 'michaeljsmith/vim-indent-object'
+  Plug 'AndrewRadev/splitjoin.vim'
+  Plug 't9md/vim-choosewin'
+  " Plug 'jeffkreeftmeijer/vim-numbertoggle'
+call plug#end()
 
 
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
+" vim-incsearch with vim-easymotion
+" You can use other keymappings like <C-l> instead of <CR> if you want to
+" use these mappings as default search and somtimes want to move cursor with
+" EasyMotion.
+function! s:incsearch_config(...) abort
+  return incsearch#util#deepextend(deepcopy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {
+  \     "\<CR>": '<Over>(easymotion)'
+  \   },
+  \   'is_expr': 0
+  \ }), get(a:, 1, {}))
+endfunction
 
-" Required:
+noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzyword#converter()],
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
+
+
 filetype plugin indent on
 syntax enable
 
@@ -97,16 +101,7 @@ set softtabstop=2                                            " insert mode tab a
 set path+=**
 set wildmenu
 
-
-" Settings of NeoBundle 'altercation/vim-colors-solarized'
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-"
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-
 
 set mouse=a
 if exists('$TMUX')  " Support resizing in tmux
