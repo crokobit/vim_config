@@ -19,7 +19,7 @@ call plug#begin('~/.vim/plugged')
   "Vim plugin that allows you to save files into directories that do not exist yet.
   Plug  'DataWraith/auto_mkdir'
 " ctrl + N P X mutiple select
-  Plug  'terryma/vim-multiple-cursors'
+  " Plug  'terryma/vim-multiple-cursors'
   " use vim trace code
   Plug  'fntlnz/atags.vim'
   " Plug  'vim-scripts/taglist.vim'
@@ -37,8 +37,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 't9md/vim-choosewin'
   " Plug 'jeffkreeftmeijer/vim-numbertoggle'
+  Plug 'vim-airline/vim-airline' " better status bar
+  Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
+let g:airline_theme='solarized'
 
 " vim-incsearch with vim-easymotion
 " You can use other keymappings like <C-l> instead of <CR> if you want to
