@@ -42,6 +42,8 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
 
 " vim-incsearch with vim-easymotion
 " You can use other keymappings like <C-l> instead of <CR> if you want to
