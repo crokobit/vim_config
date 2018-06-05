@@ -59,10 +59,6 @@ call dein#add('tpope/vim-surround')
 call dein#add('michaeljsmith/vim-indent-object')
 call dein#add('AndrewRadev/splitjoin.vim')
 call dein#add('t9md/vim-choosewin')
-" invoke with '-'
-nmap  -  <Plug>(choosewin)
-" if you want to use overlay feature
-let g:choosewin_overlay_enable = 1
 " call dein#add('jeffkreeftmeijer/vim-numbertoggle')
 
 
@@ -143,10 +139,17 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 set number relativenumber
 
+
+"vim-choosewin
+" invoke with '-'
+nmap <Leader>- <Plug>(choosewin)
+" if you want to use overlay feature
+let g:choosewin_overlay_enable = 1
+
   augroup seeingIsBelievingSettings
     autocmd!
 
-    autocmd FileType ruby nmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
+    " autocmd FileType ruby nmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
 
     autocmd FileType ruby nmap <buffer> ga <Plug>(seeing-is-believing-mark)
     autocmd FileType ruby xmap <buffer> gz <Plug>(seeing-is-believing-mark)
