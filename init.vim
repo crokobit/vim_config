@@ -39,8 +39,17 @@ call plug#begin('~/.vim/plugged')
   " Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'vim-airline/vim-airline' " better status bar
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
+" Don’t add empty newlines at the end of files
+set binary
+set noeol
+
+" auto-pairs
+let g:AutoPairsFlyMode = 1
+
+" vim-airline
 let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
@@ -106,6 +115,13 @@ set softtabstop=2                                            " insert mode tab a
 set path+=**
 set wildmenu
 
+" show invisible chars
+set list
+set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
+" Invisible character colors 
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 set mouse=a
@@ -165,4 +181,3 @@ let g:choosewin_overlay_enable = 1
 "             \ '"[-+*/=><%^&$#@!~|:?\\]"') " custom operators
 " " }}}
 
-"End dein Scripts-------------------------
