@@ -40,6 +40,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline' " better status bar
   Plug 'vim-airline/vim-airline-themes'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'tpope/vim-repeat'
+  Plug 'mkitt/tabline.vim'
 call plug#end()
 
 " Don’t add empty newlines at the end of files
@@ -51,8 +53,8 @@ let g:AutoPairsFlyMode = 1
 
 " vim-airline
 let g:airline_theme='solarized'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#tab_nr_type = 1
 
 " vim-incsearch with vim-easymotion
 " You can use other keymappings like <C-l> instead of <CR> if you want to
