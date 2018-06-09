@@ -134,10 +134,11 @@ endif
 let g:indentLine_color_term = 239
 let g:rainbow_active = 1
 
-noremap h <NOP>
-noremap j <NOP>
-noremap k <NOP>
-noremap l <NOP>
+" it breaks my vim-ruby text object
+" noremap h <NOP>
+" noremap j <NOP>
+" noremap k <NOP>
+" noremap l <NOP>
 
 let mapleader = ";"
 " <Leader>f{char} to move to {char}
