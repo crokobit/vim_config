@@ -35,16 +35,13 @@ call plug#begin('~/.vim/plugged')
   " shortcut
   Plug 'tpope/vim-commentary' " gc
   Plug 'tpope/vim-surround' " <visual-mode>+gS <visual-mode>+S cs<from-or-single-text-obj><to> ds<add-char> arround ys<text-object><add-char>
-
-
-
-
   Plug 'michaeljsmith/vim-indent-object' " text object indent t
-  " Plug 'jeffkreeftmeijer/vim-numbertoggle'
-  Plug 'vim-airline/vim-airline' " better status bar
-  Plug 'vim-airline/vim-airline-themes'
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-repeat'
+
+  " showing information
+  Plug 'vim-airline/vim-airline' " better status bar
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'mkitt/tabline.vim'
 call plug#end()
 
@@ -57,13 +54,25 @@ let g:AutoPairsFlyMode = 1
 
 " vim-airline
 let g:airline_theme='solarized'
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#tab_nr_type = 1
+
+" vim-easymotion
+"
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " vim-incsearch with vim-easymotion
-" You can use other keymappings like <C-l> instead of <CR> if you want to
-" use these mappings as default search and somtimes want to move cursor with
-" EasyMotion.
 function! s:incsearch_config(...) abort
   return incsearch#util#deepextend(deepcopy({
   \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
@@ -91,7 +100,7 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 
-
+" general settings
 filetype plugin indent on
 syntax enable
 
@@ -113,6 +122,7 @@ set number                                                   " show line numbers
 set ruler                                                    " show where you are
 set scrolloff=3                                              " show context above/below cursorline
 set backspace=indent,eol,start
+
 "Indentation without hard tabs (Ruby style)
 set expandtab                                                " expand tabs to spaces
 set shiftwidth=2                                             " normal mode indentation commands use 2 spaces
@@ -128,6 +138,7 @@ set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
+" not search in ctrlp
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 set mouse=a
@@ -138,27 +149,7 @@ endif
 let g:indentLine_color_term = 239
 let g:rainbow_active = 1
 
-" it breaks my vim-ruby text object
-" noremap h <NOP>
-" noremap j <NOP>
-" noremap k <NOP>
-" noremap l <NOP>
-
 let mapleader = ";"
-" <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-
-" s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
-
-" Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 set number relativenumber
 
@@ -189,6 +180,7 @@ let g:choosewin_overlay_enable = 1
 " " }}}
 
 
+" add space , added from unimpaired.vim
 function! s:BlankUp(count) abort
   put!=repeat(nr2char(10), a:count)
   ']+1
@@ -200,7 +192,6 @@ function! s:BlankDown(count) abort
   '[-1
   silent! call repeat#set("\<Plug>unimpairedBlankDown", a:count)
 endfunction
-
 
 nnoremap <space>k   :<C-U>call <SID>BlankUp(v:count1)<CR>
 nnoremap <space>j :<C-U>call <SID>BlankDown(v:count1)<CR>
