@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'hwartig/vim-seeing-is-believing' " ga gA repl ruby with vim
   Plug 'AndrewRadev/splitjoin.vim' " gS gJ do end to { }
   Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-bundler' " gem install, gem ctags will generate all tags from gemfile
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'chilicuil/vim-sml-coursera'
@@ -23,8 +24,13 @@ call plug#begin('~/.vim/plugged')
 
   " tool
   Plug 'tpope/vim-fugitive' " Git rapper
-  Plug 'Shougo/neosnippet.vim'
+  Plug 'Shougo/neosnippet.vim' " <C-k>
   Plug 'Shougo/neosnippet-snippets'
+  Plug 'honza/vim-snippets'
+
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  endif
 
   " theme
   Plug 'flazz/vim-colorschemes'
@@ -42,8 +48,24 @@ call plug#begin('~/.vim/plugged')
   " showing information
   Plug 'vim-airline/vim-airline' " better status bar
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'mkitt/tabline.vim'
+  Plug 'mkitt/tabline.vim' " show tag window sequence no.
+  Plug 'majutsushi/tagbar' " show file structure
+
 call plug#end()
+
+" neosnippet Plugin key-mappings.
+
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='/Users/crokobit/.vim/plugged/vim-snippets/snippets'
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
 " Don’t add empty newlines at the end of files
 set binary
@@ -57,6 +79,7 @@ let g:airline_theme='solarized'
 
 " vim-easymotion
 "
+let mapleader = ";"
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
@@ -149,7 +172,6 @@ endif
 let g:indentLine_color_term = 239
 let g:rainbow_active = 1
 
-let mapleader = ";"
 
 set number relativenumber
 
@@ -162,25 +184,13 @@ let g:choosewin_overlay_enable = 1
 
   augroup seeingIsBelievingSettings
     autocmd!
-
     " autocmd FileType ruby nmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
-
     autocmd FileType ruby nmap <buffer> ga <Plug>(seeing-is-believing-mark)
     autocmd FileType ruby xmap <buffer> gz <Plug>(seeing-is-believing-mark)
     autocmd FileType ruby imap <buffer> ga <Plug>(seeing-is-believing-mark)
-
     autocmd FileType ruby nmap <buffer> gA <Plug>(seeing-is-believing-run)
   augroup END
   
-" Rainbow Colors Improved Setup {{{
-" au FileType c,cpp,objc,objcpp,go,rust,javascript,java call rainbow#load()
-" au FileType clojure call rainbow#load(
-"             \ [['(', ')'], ['\[', '\]'], ['{', '}']], " custom braces
-"             \ '"[-+*/=><%^&$#@!~|:?\\]"') " custom operators
-" " }}}
-
-
-" add space , added from unimpaired.vim
 function! s:BlankUp(count) abort
   put!=repeat(nr2char(10), a:count)
   ']+1
