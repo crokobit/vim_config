@@ -1,41 +1,45 @@
 call plug#begin('~/.vim/plugged')
-  Plug 'Shougo/neosnippet.vim'
-  Plug 'Shougo/neosnippet-snippets'
-  Plug  'tpope/vim-fugitive' " Git rapper
-  Plug  'ctrlpvim/ctrlp.vim'
-  Plug  'flazz/vim-colorschemes'
-  Plug  'vim-ruby/vim-ruby'
-  Plug  'scrooloose/nerdtree'
-  Plug  'rking/ag.vim' " ack alternative
-  Plug  'pangloss/vim-javascript'
-  Plug  'tpope/vim-rails'
-  Plug  'tpope/vim-commentary' " gc
-  Plug  'hwartig/vim-seeing-is-believing'
-  Plug  'easymotion/vim-easymotion'
-  Plug  'haya14busa/incsearch.vim', { 'rev': 'v2.0.1' }
-  Plug  'haya14busa/incsearch-fuzzy.vim'
-  Plug  'haya14busa/incsearch-easymotion.vim'
-  Plug  'luochen1990/rainbow'
-  "Vim plugin that allows you to save files into directories that do not exist yet.
-  Plug  'DataWraith/auto_mkdir'
-" ctrl + N P X mutiple select
-  " Plug  'terryma/vim-multiple-cursors'
-  " use vim trace code
-  Plug  'fntlnz/atags.vim'
-  " Plug  'vim-scripts/taglist.vim'
-  Plug  'mileszs/ack.vim'
-
-  "solarized, screen color template
-  Plug  'altercation/vim-colors-solarized'
-  " Plug  'chilicuil/vim-sml-coursera'
-
+  "syntax
+  Plug 'vim-ruby/vim-ruby' " text object m -> mathod M -> Class
+  Plug 'hwartig/vim-seeing-is-believing' " ga gA repl ruby with vim
+  Plug 'AndrewRadev/splitjoin.vim' " gS gJ do end to { }
+  Plug 'tpope/vim-rails'
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
-  Plug 'Yggdroot/indentLine'
-  Plug 'tpope/vim-surround'
-  Plug 'michaeljsmith/vim-indent-object'
-  Plug 'AndrewRadev/splitjoin.vim'
-  Plug 't9md/vim-choosewin'
+  Plug 'chilicuil/vim-sml-coursera'
+
+  " search
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'rking/ag.vim' " Ag with the_silver_searcher
+  Plug 'fntlnz/atags.vim' " file tags generating with ctags
+  Plug 'easymotion/vim-easymotion' " ;s ;w ;L / ;f
+  Plug 'haya14busa/incsearch-easymotion.vim'
+  Plug 'haya14busa/incsearch.vim'
+  Plug 'haya14busa/incsearch-fuzzy.vim'
+
+  " browse
+  Plug 'scrooloose/nerdtree'
+  Plug 't9md/vim-choosewin' " ;- switch window with alphabet
+
+  " tool
+  Plug 'tpope/vim-fugitive' " Git rapper
+  Plug 'Shougo/neosnippet.vim'
+  Plug 'Shougo/neosnippet-snippets'
+
+  " theme
+  Plug 'flazz/vim-colorschemes'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'luochen1990/rainbow' " show () [] {} pairs with color
+  Plug 'Yggdroot/indentLine' " display the indention levels with thin vertical lines
+
+  " shortcut
+  Plug 'tpope/vim-commentary' " gc
+  Plug 'tpope/vim-surround' " <visual-mode>+gS <visual-mode>+S cs<from-or-single-text-obj><to> ds<add-char> arround ys<text-object><add-char>
+
+
+
+
+  Plug 'michaeljsmith/vim-indent-object' " text object indent t
   " Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'vim-airline/vim-airline' " better status bar
   Plug 'vim-airline/vim-airline-themes'
