@@ -4,7 +4,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'hwartig/vim-seeing-is-believing' " ga gA repl ruby with vim
   Plug 'AndrewRadev/splitjoin.vim' " gS gJ do end to { }
   Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-bundler' " gem install, gem ctags will generate all tags from gemfile
+  Plug 'tpope/vim-endwise'
+  Plug 'nelstrom/vim-textobj-rubyblock' " text object r for do-end block or def end
+  Plug 'kana/vim-textobj-user' " dependency of vim-textobj-rubyblock
+
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'chilicuil/vim-sml-coursera'
@@ -50,7 +53,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'mkitt/tabline.vim' " show tag window sequence no.
   Plug 'majutsushi/tagbar' " show file structure
-
+  Plug 'rizzatti/dash.vim' "<leader>d
 call plug#end()
 
 " neosnippet Plugin key-mappings.
@@ -205,3 +208,6 @@ endfunction
 
 nnoremap <space>k   :<C-U>call <SID>BlankUp(v:count1)<CR>
 nnoremap <space>j :<C-U>call <SID>BlankDown(v:count1)<CR>
+
+
+nmap <silent> <leader>d <Plug>DashSearch
