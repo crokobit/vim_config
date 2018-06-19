@@ -54,7 +54,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'mkitt/tabline.vim' " show tag window sequence no.
   Plug 'majutsushi/tagbar' " show file structure
   Plug 'rizzatti/dash.vim' "<leader>d
+
+
+  Plug 'rhysd/vim-grammarous'
 call plug#end()
+
+" auto-pair fly mode
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 " neosnippet Plugin key-mappings.
 
@@ -82,13 +89,13 @@ let g:airline_theme='solarized'
 
 " vim-easymotion
 "
-let mapleader = ";"
+let mapleader = "'"
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
+nmap <Leader>s <Plug>(easymotion-overwin-f2)
 
 " Move to line
 map <Leader>L <Plug>(easymotion-bd-jk)
@@ -109,9 +116,13 @@ function! s:incsearch_config(...) abort
   \ }), get(a:, 1, {}))
 endfunction
 
-noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
-noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
-noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+" noremap <silent><expr>/  incsearch#go(<SID>incsearch_config())
+" noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+" noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+
+noremap <silent><expr><Leader>/  incsearch#go(<SID>incsearch_config())
+noremap <silent><expr><Leader>?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+noremap <silent><expr><Leader>g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
@@ -211,3 +222,7 @@ nnoremap <space>j :<C-U>call <SID>BlankDown(v:count1)<CR>
 
 
 nmap <silent> <leader>d <Plug>DashSearch
+
+" auto-pairs
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutBackInsert = '<M-b>'
