@@ -59,10 +59,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/vim-grammarous'
 call plug#end()
 
-" auto-pair fly mode
-let g:AutoPairsFlyMode = 0
-let g:AutoPairsShortcutBackInsert = '<M-b>'
-
 " neosnippet Plugin key-mappings.
 
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
