@@ -30,6 +30,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/neosnippet.vim' " <C-k>
   Plug 'Shougo/neosnippet-snippets'
   Plug 'honza/vim-snippets'
+  Plug 'kchmck/vim-coffee-script'
 
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -43,8 +44,8 @@ call plug#begin('~/.vim/plugged')
 
   " shortcut
   Plug 'tpope/vim-commentary' " gc
-  Plug 'tpope/vim-surround' " <visual-mode>+gS <visual-mode>+S cs<from-or-single-text-obj><to> ds<add-char> arround ys<text-object><add-char>
-  Plug 'michaeljsmith/vim-indent-object' " text object indent t
+  Plug 'tpope/vim-surround' " (surround above and below) <visual-mode>+gS (surround inline) <visual-mode>+S cs<original surround or single char text-obj><new_surround_char> ds<add-char> arround ys<text-object><add-char>
+  Plug 'michaeljsmith/vim-indent-object' " text object indent i
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-repeat'
 
@@ -222,3 +223,5 @@ nmap <silent> <leader>d <Plug>DashSearch
 " auto-pairs
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutBackInsert = '<M-b>'
+
+au BufNewFile,BufRead *.coffee set filetype=coffee
